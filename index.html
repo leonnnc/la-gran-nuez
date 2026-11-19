@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Gran Nuez · Postres caseros en Lima</title>
+  <meta name="description" content="Tortas, queques y postres caseros horneados en Lima. Haz tu pedido por WhatsApp con delivery o recojo y paga con Yape, Plin, efectivo o transferencia.">
+  <meta name="theme-color" content="#E82B63">
+  <meta property="og:title" content="La Gran Nuez · Postres caseros">
+  <meta property="og:description" content="Tortas, queques y postres caseros. Pide online y recibe en la fecha que elijas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/torta-chocolate.jpg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#catalogo">Saltar al catálogo</a>
+
+  <div class="announce" id="announceBar">
+    <div class="container announce__inner">
+      <span class="announce__dot" aria-hidden="true"></span>
+      <p id="announceText">Pedidos con 24 horas de anticipación · Delivery en Lima</p>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="La Gran Nuez, inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" role="img">
+            <path d="M32 8c2.2 0 4 1.8 4 4v4h-8v-4c0-2.2 1.8-4 4-4Z" fill="#5C3A22"/>
+            <path d="M15 23c0-4.4 7.6-8 17-8s17 3.6 17 8v3H15v-3Z" fill="#8A5A35"/>
+            <path d="M17 27h30c0 14-6.7 27-15 27S17 41 17 27Z" fill="#F3CE94"/>
+            <path d="M23 33c1.8 5.4 5 8.6 9 9.8" fill="none" stroke="#D9A967" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <strong>La Gran Nuez</strong>
+          <small>Postres caseros</small>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="#catalogo">Productos</a>
+        <a href="#como-pedir">Cómo pedir</a>
+        <a href="#pagos">Pagos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="icon-btn icon-btn--wa" data-wa-link href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        </a>
+        <button class="cart-btn" id="openCart" type="button" aria-label="Abrir carrito de compras">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 8h12l1 12H5L6 8Zm3 0V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-btn__label">Carrito</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__blob hero__blob--pink" aria-hidden="true"></div>
+      <div class="hero__blob hero__blob--gold" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <span class="pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2c1.1 0 2 .9 2 2v1h4a2 2 0 0 1 2 2v1H4V7a2 2 0 0 1 2-2h4V4c0-1.1.9-2 2-2Zm-7 8h14v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-9Z"/></svg>
+            Horneado hoy, directo a tu mesa
+          </span>
+          <h1>Postres caseros que <em>endulzan</em> tu día</h1>
+          <p class="hero__lead">Tortas, queques y postres preparados en casa con ingredientes frescos. Elige tus favoritos, agenda la entrega y paga como prefieras.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#catalogo">
+              Ver postres
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" data-wa-link href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2A9.9 9.9 0 0 0 3.45 16.86L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm0 18a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.06.8.82-2.98-.2-.31a8.1 8.1 0 1 1 6.86 3.8Zm4.44-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.83-.84 2.02s.86 2.34.98 2.5c.12.16 1.7 2.6 4.12 3.64.57.25 1.02.4 1.37.51.58.19 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+              Pedir por WhatsApp
+            </a>
+          </div>
+          <ul class="hero__facts">
+            <li><strong>100%</strong><span>casero</span></li>
+            <li><strong>Delivery</strong><span>y recojo</span></li>
+            <li><strong>Yape</strong><span>y más pagos</span></li>
+          </ul>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <div class="hero__glow"></div>
+          <figure class="hero__photo hero__photo--main">
+            <img src="assets/img/torta-chocolate.jpg" alt="" width="297" height="153">
+            <figcaption><span>Torta de Chocolate</span><strong>S/ 8.00</strong></figcaption>
+          </figure>
+          <figure class="hero__photo hero__photo--small">
+            <img src="assets/img/crema-volteada.jpg" alt="" width="287" height="136">
+            <figcaption><span>Crema Volteada</span><strong>S/ 7.00</strong></figcaption>
+          </figure>
+          <span class="hero__chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.4 6.2L21 9.3l-5 4.3 1.5 6.4L12 16.6 6.5 20l1.5-6.4-5-4.3 6.6-1.1L12 2Z"/></svg>
+            Receta de casa
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="perks" aria-label="Beneficios">
+      <div class="container perks__grid">
+        <div class="perk">
+          <span class="perk__icon">🧁</span>
+          <div><strong>Horneado al día</strong><span>Producción casera por encargo</span></div>
+        </div>
+        <div class="perk">
+          <span class="perk__icon">🗓️</span>
+          <div><strong>Tú eliges la fecha</strong><span>Pedido y entrega programados</span></div>
+        </div>
+        <div class="perk">
+          <span class="perk__icon">🛵</span>
+          <div><strong>Delivery o recojo</strong><span>Envío gratis desde S/ 30</span></div>
+        </div>
+        <div class="perk">
+          <span class="perk__icon">💳</span>
+          <div><strong>Paga fácil</strong><span>Yape, Plin, efectivo o transferencia</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="section catalog" id="catalogo">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">Nuestro menú</span>
+            <h2>Elige tu postre favorito</h2>
+            <p>Precios por porción. Agrega al carrito y completa tu pedido cuando estés listo.</p>
+          </div>
+          <span class="section__count" id="productsCount">6 productos</span>
+        </div>
+
+        <div class="catalog__toolbar">
+          <div class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m21 21-4.3-4.3M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+            <input type="search" id="catalogSearch" placeholder="Buscar torta, queque, postre…" aria-label="Buscar productos" autocomplete="off">
+          </div>
+          <div class="chips" id="categoryChips" role="group" aria-label="Filtrar por categoría">
+            <button type="button" class="chip is-active" data-category="all">Todos</button>
+            <button type="button" class="chip" data-category="tortas">Tortas</button>
+            <button type="button" class="chip" data-category="postres">Postres</button>
+            <button type="button" class="chip" data-category="queques">Queques</button>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+        <div class="empty" id="catalogEmpty" hidden>
+          <span aria-hidden="true">🔍</span>
+          <h3>No encontramos ese postre</h3>
+          <p>Prueba con otra palabra o revisa todas las categorías.</p>
+          <button type="button" class="btn btn--soft" id="resetFilters">Ver todo el menú</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CÓMO PEDIR -->
+    <section class="section how" id="como-pedir">
+      <div class="container">
+        <div class="section__head section__head--center">
+          <span class="eyebrow">Así de simple</span>
+          <h2>¿Cómo hago mi pedido?</h2>
+          <p>Tres pasos y listo. Coordinamos la entrega por WhatsApp.</p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num">1</span>
+            <h3>Arma tu carrito</h3>
+            <p>Elige tus postres y la cantidad de porciones que necesitas.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">2</span>
+            <h3>Agenda y paga</h3>
+            <p>Selecciona fecha de pedido, fecha de entrega y tu método de pago.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">3</span>
+            <h3>Confirma por WhatsApp</h3>
+            <p>Enviamos tu pedido con un clic y coordinamos los detalles finales.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PAGOS -->
+    <section class="section pay" id="pagos">
+      <div class="container pay__grid">
+        <div class="pay__copy">
+          <span class="eyebrow">Pagos a tu manera</span>
+          <h2>Elige cómo pagar</h2>
+          <p>Al confirmar tu pedido te compartimos los datos. Envía tu comprobante por WhatsApp y separamos tu pedido.</p>
+          <ul class="pay__list">
+            <li><span class="tick" aria-hidden="true">✓</span> Sin recargos por pagos digitales</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Efectivo contra entrega o en el recojo</li>
+            <li><span class="tick" aria-hidden="true">✓</span> Coordinamos el horario exacto contigo</li>
+          </ul>
+        </div>
+        <div class="pay__cards">
+          <article class="pay-card">
+            <span class="pay-card__logo pay-card__logo--yape">Yape</span>
+            <div>
+              <h3>Yape</h3>
+              <p>Pago inmediato desde tu celular.</p>
+              <div class="pay-card__data">
+                <span id="yapeNumber">922 678 663</span>
+                <button type="button" class="copy-btn" data-copy="yape" aria-label="Copiar número de Yape">Copiar</button>
+              </div>
+            </div>
+          </article>
+          <article class="pay-card">
+            <span class="pay-card__logo pay-card__logo--plin">Plin</span>
+            <div>
+              <h3>Plin</h3>
+              <p>Desde tu billetera digital favorita.</p>
+              <div class="pay-card__data">
+                <span id="plinNumber">922 678 663</span>
+                <button type="button" class="copy-btn" data-copy="plin" aria-label="Copiar número de Plin">Copiar</button>
+              </div>
+            </div>
+          </article>
+          <article class="pay-card">
+            <span class="pay-card__logo pay-card__logo--cash">S/</span>
+            <div>
+              <h3>Efectivo</h3>
+              <p>Paga al recibir tu pedido o al recogerlo.</p>
+              <div class="pay-card__data"><span>Contra entrega</span></div>
+            </div>
+          </article>
+          <article class="pay-card">
+            <span class="pay-card__logo pay-card__logo--bank">BCP</span>
+            <div>
+              <h3>Transferencia</h3>
+              <p>Te compartimos los datos por WhatsApp.</p>
+              <div class="pay-card__data"><span>Coordinación directa</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto">
+      <div class="container">
+        <div class="contact__card">
+          <div class="contact__copy">
+            <span class="eyebrow eyebrow--light">¿Antojo de algo dulce?</span>
+            <h2>Hagamos tu pedido hoy</h2>
+            <p>Escríbenos por WhatsApp y con gusto te ayudamos a elegir. Recuerda que trabajamos por encargo con 24 horas de anticipación.</p>
+            <div class="contact__actions">
+              <a class="btn btn--light" data-wa-link href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2A9.9 9.9 0 0 0 3.45 16.86L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm0 18a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.06.8.82-2.98-.2-.31a8.1 8.1 0 1 1 6.86 3.8Zm4.44-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.83-.84 2.02s.86 2.34.98 2.5c.12.16 1.7 2.6 4.12 3.64.57.25 1.02.4 1.37.51.58.19 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+                Escribir por WhatsApp
+              </a>
+              <a class="btn btn--outline-light" href="#catalogo">Ver el menú</a>
+            </div>
+          </div>
+          <div class="contact__info">
+            <div class="contact__row">
+              <span class="contact__icon" aria-hidden="true">📞</span>
+              <div><small>WhatsApp / llamadas</small><strong id="contactPhone">922 678 663</strong></div>
+            </div>
+            <div class="contact__row">
+              <span class="contact__icon" aria-hidden="true">🕘</span>
+              <div><small>Horario de atención</small><strong id="contactHours">Lun a Sáb · 9:00 a 19:00</strong></div>
+            </div>
+            <div class="contact__row">
+              <span class="contact__icon" aria-hidden="true">📍</span>
+              <div><small>Zona de entrega</small><strong id="contactAddress">Lima, Perú</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="index.html">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><path d="M32 8c2.2 0 4 1.8 4 4v4h-8v-4c0-2.2 1.8-4 4-4Z" fill="#F3CE94"/><path d="M15 23c0-4.4 7.6-8 17-8s17 3.6 17 8v3H15v-3Z" fill="#C98A5A"/><path d="M17 27h30c0 14-6.7 27-15 27S17 41 17 27Z" fill="#F3CE94"/></svg>
+          </span>
+          <span class="brand__text"><strong>La Gran Nuez</strong><small>Postres caseros</small></span>
+        </a>
+        <p>Tortas, queques y postres preparados en casa, con pedidos programados y entrega en Lima.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Tienda</h3>
+        <a href="#catalogo">Productos</a>
+        <a href="#como-pedir">Cómo pedir</a>
+        <a href="#pagos">Métodos de pago</a>
+      </div>
+      <div class="footer__col">
+        <h3>Atención</h3>
+        <a data-wa-link href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <span id="footerHours">Lun a Sáb · 9:00 a 19:00</span>
+        <span id="footerAddress">Lima, Perú</span>
+      </div>
+      <div class="footer__col">
+        <h3>Gestión</h3>
+        <a href="panel/">Panel de productos</a>
+        <span>Acceso con PIN</span>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year">2026</span> La Gran Nuez. Todos los derechos reservados.</span>
+      <span>Hecho con cariño en Lima, Perú.</span>
+    </div>
+  </footer>
+
+  <!-- CARRITO -->
+  <div class="drawer-backdrop" id="cartBackdrop" hidden></div>
+  <aside class="cart" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true">
+    <header class="cart__head">
+      <div>
+        <span class="eyebrow">Tu selección</span>
+        <h2 id="cartTitle">Carrito</h2>
+      </div>
+      <button type="button" class="icon-btn" id="closeCart" aria-label="Cerrar carrito">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+    <div class="cart__body" id="cartItems"></div>
+    <div class="cart__empty" id="cartEmpty">
+      <span class="cart__empty-icon" aria-hidden="true">🧺</span>
+      <h3>Tu carrito está vacío</h3>
+      <p>Agrega tus postres favoritos para empezar el pedido.</p>
+      <button type="button" class="btn btn--soft" id="cartEmptyCta">Ver productos</button>
+    </div>
+    <footer class="cart__foot" id="cartFoot" hidden>
+      <div class="cart__row"><span>Subtotal</span><strong id="cartSubtotal">S/ 0.00</strong></div>
+      <p class="cart__hint" id="cartHint">El delivery se calcula al finalizar el pedido.</p>
+      <button type="button" class="btn btn--primary btn--block" id="goCheckout">
+        Continuar con el pedido
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </button>
+    </footer>
+  </aside>
+
+  <!-- CHECKOUT -->
+  <dialog class="modal" id="checkoutDialog" aria-labelledby="checkoutTitle">
+    <div class="modal__panel modal__panel--wide">
+      <header class="modal__head">
+        <div>
+          <span class="eyebrow">Paso final</span>
+          <h2 id="checkoutTitle">Datos de tu pedido</h2>
+        </div>
+        <button type="button" class="icon-btn" data-close-checkout aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+
+      <form id="checkoutForm" novalidate>
+        <div class="checkout">
+          <div class="checkout__fields">
+            <fieldset class="field-group">
+              <legend>Tus datos</legend>
+              <div class="field-row">
+                <div class="field">
+                  <label for="customerName">Nombre completo *</label>
+                  <input type="text" id="customerName" name="customerName" autocomplete="name" maxlength="70" placeholder="Ej. Ana Pérez" required>
+                  <small class="field__error" data-error-for="customerName"></small>
+                </div>
+                <div class="field">
+                  <label for="customerPhone">Celular / WhatsApp *</label>
+                  <input type="tel" id="customerPhone" name="customerPhone" autocomplete="tel" inputmode="numeric" maxlength="12" placeholder="9 dígitos" required>
+                  <small class="field__error" data-error-for="customerPhone"></small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="field-group">
+              <legend>Entrega</legend>
+              <div class="segmented" role="radiogroup" aria-label="Tipo de entrega">
+                <label class="segmented__option">
+                  <input type="radio" name="fulfillment" value="delivery" checked>
+                  <span><strong>Delivery</strong><small>Llevamos a tu puerta</small></span>
+                </label>
+                <label class="segmented__option">
+                  <input type="radio" name="fulfillment" value="pickup">
+                  <span><strong>Recojo</strong><small>Coordinas el punto</small></span>
+                </label>
+              </div>
+              <div class="field" id="addressField">
+                <label for="customerAddress">Dirección de entrega *</label>
+                <input type="text" id="customerAddress" name="customerAddress" autocomplete="street-address" maxlength="120" placeholder="Calle, número, distrito y referencia">
+                <small class="field__error" data-error-for="customerAddress"></small>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="orderDate">Fecha de pedido *</label>
+                  <input type="date" id="orderDate" name="orderDate" required>
+                  <small class="field__help">Fecha en que realizas el pedido.</small>
+                  <small class="field__error" data-error-for="orderDate"></small>
+                </div>
+                <div class="field">
+                  <label for="deliveryDate">Fecha de entrega *</label>
+                  <input type="date" id="deliveryDate" name="deliveryDate" required>
+                  <small class="field__help" id="deliveryHelp">Mínimo 1 día de anticipación.</small>
+                  <small class="field__error" data-error-for="deliveryDate"></small>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="field-group">
+              <legend>Método de pago *</legend>
+              <div class="pay-options">
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="yape" checked>
+                  <span class="pay-option__body">
+                    <span class="pay-option__logo pay-option__logo--yape">Yape</span>
+                    <span><strong>Yape</strong><small>Pago inmediato</small></span>
+                  </span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="plin">
+                  <span class="pay-option__body">
+                    <span class="pay-option__logo pay-option__logo--plin">Plin</span>
+                    <span><strong>Plin</strong><small>Billetera digital</small></span>
+                  </span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="efectivo">
+                  <span class="pay-option__body">
+                    <span class="pay-option__logo pay-option__logo--cash">S/</span>
+                    <span><strong>Efectivo</strong><small>Al recibir</small></span>
+                  </span>
+                </label>
+                <label class="pay-option">
+                  <input type="radio" name="payment" value="transferencia">
+                  <span class="pay-option__body">
+                    <span class="pay-option__logo pay-option__logo--bank">BCP</span>
+                    <span><strong>Transferencia</strong><small>Coordinamos datos</small></span>
+                  </span>
+                </label>
+              </div>
+              <p class="pay-note" id="payNote"></p>
+            </fieldset>
+
+            <div class="field">
+              <label for="orderNotes">Notas para tu pedido <span class="optional">(opcional)</span></label>
+              <textarea id="orderNotes" name="orderNotes" rows="3" maxlength="280" placeholder="Ej. mensaje en la torta, referencia del edificio, hora preferida…"></textarea>
+            </div>
+
+            <label class="checkline">
+              <input type="checkbox" id="acceptTerms" name="acceptTerms">
+              <span>Entiendo que el pedido se confirma por WhatsApp y que la fecha queda sujeta a disponibilidad.</span>
+            </label>
+            <small class="field__error field__error--block" data-error-for="acceptTerms"></small>
+          </div>
+
+          <aside class="checkout__summary">
+            <h3>Resumen</h3>
+            <ul class="summary-items" id="checkoutItems"></ul>
+            <div class="summary-line"><span>Subtotal</span><strong id="sumSubtotal">S/ 0.00</strong></div>
+            <div class="summary-line" id="deliveryRow"><span>Delivery</span><strong id="sumDelivery">S/ 0.00</strong></div>
+            <p class="summary-note" id="freeShipNote"></p>
+            <div class="summary-total"><span>Total</span><strong id="sumTotal">S/ 0.00</strong></div>
+            <p class="summary-terms">Los precios incluyen IGV. El pedido se confirma al enviar el mensaje de WhatsApp.</p>
+          </aside>
+        </div>
+
+        <footer class="modal__foot">
+          <button type="button" class="btn btn--ghost" data-close-checkout>Volver al carrito</button>
+          <button type="submit" class="btn btn--primary" id="confirmOrder">
+            Confirmar pedido
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </button>
+        </footer>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- CONFIRMACIÓN -->
+  <dialog class="modal" id="successDialog" aria-labelledby="successTitle">
+    <div class="modal__panel modal__panel--success">
+      <div class="success">
+        <span class="success__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </span>
+        <span class="eyebrow">¡Pedido registrado!</span>
+        <h2 id="successTitle">Gracias por tu pedido</h2>
+        <p>Guarda tu código y envíanos el resumen por WhatsApp para confirmar el pago y la entrega.</p>
+        <div class="success__code">
+          <small>Código de pedido</small>
+          <strong id="successCode">LGN-000000-0000</strong>
+        </div>
+        <div class="success__details" id="successDetails"></div>
+        <div class="success__actions">
+          <a class="btn btn--primary btn--block" id="sendWhatsapp" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2A9.9 9.9 0 0 0 3.45 16.86L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm0 18a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.06.8.82-2.98-.2-.31a8.1 8.1 0 1 1 6.86 3.8Zm4.44-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.83-.84 2.02s.86 2.34.98 2.5c.12.16 1.7 2.6 4.12 3.64.57.25 1.02.4 1.37.51.58.19 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+            Enviar pedido por WhatsApp
+          </a>
+          <button type="button" class="btn btn--ghost btn--block" id="keepShopping">Seguir comprando</button>
+        </div>
+        <p class="success__hint" id="successHint">Si el botón no abre WhatsApp, escríbenos al número de contacto.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <a class="wa-float" data-wa-link href="#" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2A9.9 9.9 0 0 0 3.45 16.86L2 22l5.25-1.38A9.9 9.9 0 1 0 12.04 2Zm0 18a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.06.8.82-2.98-.2-.31a8.1 8.1 0 1 1 6.86 3.8Zm4.44-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.83-.84 2.02s.86 2.34.98 2.5c.12.16 1.7 2.6 4.12 3.64.57.25 1.02.4 1.37.51.58.19 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+  </a>
+
+  <noscript>
+    <p style="padding:1rem;background:#ffe3ec;text-align:center">Activa JavaScript para usar el carrito y realizar pedidos.</p>
+  </noscript>
+
+  <script src="js/store.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

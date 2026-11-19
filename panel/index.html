@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel · La Gran Nuez</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#2c1a10">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <main class="login" id="loginView">
+    <div class="login__bg" aria-hidden="true"></div>
+    <div class="login__card">
+      <a class="brand" href="../" aria-label="La Gran Nuez, ir a la tienda">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M32 8c2.2 0 4 1.8 4 4v4h-8v-4c0-2.2 1.8-4 4-4Z" fill="#5C3A22"/>
+            <path d="M15 23c0-4.4 7.6-8 17-8s17 3.6 17 8v3H15v-3Z" fill="#8A5A35"/>
+            <path d="M17 27h30c0 14-6.7 27-15 27S17 41 17 27Z" fill="#F3CE94"/>
+            <path d="M23 33c1.8 5.4 5 8.6 9 9.8" fill="none" stroke="#D9A967" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand__text"><strong>La Gran Nuez</strong><small>Postres caseros</small></span>
+      </a>
+
+      <span class="eyebrow">Administración</span>
+      <h1>Panel de la tienda</h1>
+      <p class="login__lead">Gestiona productos, precios, pedidos y la configuración de tu tienda.</p>
+
+      <form id="loginForm" novalidate>
+        <label class="field-label" for="pinInput">PIN de acceso</label>
+        <input class="input input--pin" type="password" id="pinInput" inputmode="numeric" autocomplete="current-password" maxlength="8" placeholder="••••" required>
+        <p class="form-error" id="loginError" role="alert"></p>
+        <button class="btn btn--primary btn--block" type="submit">Entrar al panel</button>
+      </form>
+
+      <p class="login__hint">PIN inicial: <strong>1234</strong>. Cámbialo en Configuración.</p>
+      <a class="login__back" href="../">← Volver a la tienda</a>
+    </div>
+  </main>
+
+  <!-- ADMIN -->
+  <div class="admin" id="appView" hidden>
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="M32 8c2.2 0 4 1.8 4 4v4h-8v-4c0-2.2 1.8-4 4-4Z" fill="#F3CE94"/>
+            <path d="M15 23c0-4.4 7.6-8 17-8s17 3.6 17 8v3H15v-3Z" fill="#C98A5A"/>
+            <path d="M17 27h30c0 14-6.7 27-15 27S17 41 17 27Z" fill="#F3CE94"/>
+          </svg>
+        </span>
+        <div class="sidebar__brand-text">
+          <strong>La Gran Nuez</strong>
+          <small>Panel de gestión</small>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Secciones del panel">
+        <button type="button" class="nav-btn is-active" data-view="resumen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>
+          Resumen
+        </button>
+        <button type="button" class="nav-btn" data-view="productos">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Zm0 0v9m8-4.5-8 4.5-8-4.5"/></svg>
+          Productos
+          <span class="nav-btn__count" id="navProductCount">0</span>
+        </button>
+        <button type="button" class="nav-btn" data-view="pedidos">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 4h14v16l-3.5-2-3.5 2-3.5-2L5 20V4Zm3 5h8M8 13h5"/></svg>
+          Pedidos
+          <span class="nav-btn__count" id="navOrderCount">0</span>
+        </button>
+        <button type="button" class="nav-btn" data-view="config">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm8-3.5a8 8 0 0 0-.2-1.7l2-1.6-2-3.4-2.4 1a8 8 0 0 0-2.9-1.7L14 2h-4l-.4 2.6A8 8 0 0 0 6.7 6.3L4.3 5.3l-2 3.4 2 1.6a8.1 8.1 0 0 0 0 3.4l-2 1.6 2 3.4 2.4-1a8 8 0 0 0 2.9 1.7L10 22h4l.4-2.6a8 8 0 0 0 2.9-1.7l2.4 1 2-3.4-2-1.6c.2-.5.3-1.1.3-1.7Z"/></svg>
+          Configuración
+        </button>
+      </nav>
+
+      <div class="sidebar__foot">
+        <a class="nav-btn" href="../" aria-label="Ver la tienda" title="Ver la tienda">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v16h-6M10 8l-4 4 4 4M6 12h10"/></svg>
+          <span>Ver tienda</span>
+        </a>
+        <button type="button" class="nav-btn" id="logoutBtn" aria-label="Cerrar sesión" title="Cerrar sesión">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M10 4H4v16h6M14 8l4 4-4 4M6 12h12"/></svg>
+          <span>Cerrar sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="admin__main">
+      <header class="topbar">
+        <div class="topbar__title">
+          <h1 id="viewTitle">Resumen</h1>
+          <p id="viewSubtitle">Tu tienda de postres caseros de un vistazo.</p>
+        </div>
+        <div class="topbar__actions">
+          <span class="save-state" id="saveState">Guardado local</span>
+          <button type="button" class="btn btn--primary btn--sm" id="newProductTop">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+            Nuevo producto
+          </button>
+        </div>
+      </header>
+
+      <main class="content">
+        <!-- RESUMEN -->
+        <section class="view" id="view-resumen" data-view-panel="resumen">
+          <div class="stats">
+            <article class="stat">
+              <span class="stat__icon stat__icon--pink" aria-hidden="true">🧁</span>
+              <div><small>Productos</small><strong id="statProducts">0</strong><span id="statAvailable">0 disponibles</span></div>
+            </article>
+            <article class="stat">
+              <span class="stat__icon stat__icon--gold" aria-hidden="true">🧾</span>
+              <div><small>Pedidos</small><strong id="statOrders">0</strong><span id="statPending">0 pendientes</span></div>
+            </article>
+            <article class="stat">
+              <span class="stat__icon stat__icon--green" aria-hidden="true">💰</span>
+              <div><small>Ventas registradas</small><strong id="statSales">S/ 0.00</strong><span>Sin pedidos cancelados</span></div>
+            </article>
+            <article class="stat">
+              <span class="stat__icon stat__icon--blue" aria-hidden="true">🗓️</span>
+              <div><small>Próxima entrega</small><strong id="statNext">—</strong><span id="statNextLabel">Sin pedidos activos</span></div>
+            </article>
+          </div>
+
+          <div class="panel-grid">
+            <section class="card">
+              <header class="card__head">
+                <div><h2>Pedidos recientes</h2><p>Los últimos pedidos guardados en este navegador.</p></div>
+                <button type="button" class="link-btn" data-go="pedidos">Ver todos</button>
+              </header>
+              <div class="recent-list" id="recentOrders"></div>
+              <div class="empty-inline" id="recentEmpty">Aún no hay pedidos. Cuando un cliente confirme uno, aparecerá aquí.</div>
+            </section>
+
+            <section class="card card--actions">
+              <header class="card__head">
+                <div><h2>Acciones rápidas</h2><p>Lo que más vas a usar.</p></div>
+              </header>
+              <div class="quick">
+                <button type="button" class="quick__btn" id="quickProduct">
+                  <span aria-hidden="true">➕</span>
+                  <strong>Nuevo producto</strong>
+                  <small>Agrega un postre al menú</small>
+                </button>
+                <button type="button" class="quick__btn" data-go="config">
+                  <span aria-hidden="true">⚙️</span>
+                  <strong>Configuración</strong>
+                  <small>Datos de pago y delivery</small>
+                </button>
+                <button type="button" class="quick__btn" data-go="pedidos">
+                  <span aria-hidden="true">📋</span>
+                  <strong>Revisar pedidos</strong>
+                  <small>Cambia el estado de entrega</small>
+                </button>
+                <a class="quick__btn" href="../" target="_blank" rel="noopener">
+                  <span aria-hidden="true">🛍️</span>
+                  <strong>Ver tienda</strong>
+                  <small>Abre la página pública</small>
+                </a>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section class="view" id="view-productos" data-view-panel="productos" hidden>
+          <div class="toolbar">
+            <div class="search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m21 21-4.3-4.3M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+              <input type="search" id="productSearch" placeholder="Buscar producto…" aria-label="Buscar producto" autocomplete="off">
+            </div>
+            <button type="button" class="btn btn--primary btn--sm" id="newProductBtn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+              Agregar producto
+            </button>
+          </div>
+
+          <div class="table-card">
+            <table class="table table--products">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th>Precio</th>
+                  <th>Disponible</th>
+                  <th class="th-actions">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="productsBody"></tbody>
+            </table>
+            <div class="empty-inline" id="productsEmpty" hidden>
+              No hay productos que coincidan. <button type="button" class="link-btn" id="clearProductSearch">Limpiar búsqueda</button>
+            </div>
+          </div>
+
+          <p class="foot-note">Las imágenes y los productos se guardan en este navegador (localStorage). Para cambiar de dispositivo usa el respaldo JSON en Configuración.</p>
+        </section>
+
+        <!-- PEDIDOS -->
+        <section class="view" id="view-pedidos" data-view-panel="pedidos" hidden>
+          <div class="toolbar toolbar--wrap">
+            <div class="chips" id="orderFilters" role="group" aria-label="Filtrar pedidos por estado">
+              <button type="button" class="chip is-active" data-status="todos">Todos</button>
+              <button type="button" class="chip" data-status="pendiente">Pendientes</button>
+              <button type="button" class="chip" data-status="preparando">En preparación</button>
+              <button type="button" class="chip" data-status="entregado">Entregados</button>
+              <button type="button" class="chip" data-status="cancelado">Cancelados</button>
+            </div>
+            <button type="button" class="btn btn--ghost btn--sm" id="exportOrdersBtn">Exportar respaldo</button>
+          </div>
+
+          <div class="table-card">
+            <table class="table table--orders">
+              <thead>
+                <tr>
+                  <th>Pedido</th>
+                  <th>Cliente</th>
+                  <th>Entrega</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                  <th class="th-actions">Ver</th>
+                </tr>
+              </thead>
+              <tbody id="ordersBody"></tbody>
+            </table>
+            <div class="empty-inline" id="ordersEmpty" hidden>Aún no hay pedidos registrados en este navegador.</div>
+          </div>
+
+          <p class="foot-note">Los pedidos se guardan en este navegador. Si la tienda se usa en otro dispositivo, activa un backend o sincroniza con el respaldo JSON.</p>
+        </section>
+
+        <!-- CONFIGURACIÓN -->
+        <section class="view" id="view-config" data-view-panel="config" hidden>
+          <div id="configForm">
+            <div class="panel-grid">
+              <section class="card">
+                <header class="card__head"><div><h2>Datos de la tienda</h2><p>Aparecen en la página pública y en los mensajes.</p></div></header>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="cfgBrand">Nombre del negocio</label>
+                    <input class="input" type="text" id="cfgBrand" maxlength="40" required>
+                  </div>
+                  <div class="field">
+                    <label for="cfgTagline">Frase corta</label>
+                    <input class="input" type="text" id="cfgTagline" maxlength="40" required>
+                  </div>
+                  <div class="field field--full">
+                    <label for="cfgAnnouncement">Anuncio superior</label>
+                    <input class="input" type="text" id="cfgAnnouncement" maxlength="110">
+                  </div>
+                  <div class="field">
+                    <label for="cfgWhatsapp">WhatsApp (con código de país)</label>
+                    <input class="input" type="tel" id="cfgWhatsapp" inputmode="numeric" maxlength="14" placeholder="51922678663" required>
+                    <small class="hint">Formato: 51 + número, sin espacios.</small>
+                  </div>
+                  <div class="field">
+                    <label for="cfgPhone">Teléfono visible</label>
+                    <input class="input" type="text" id="cfgPhone" maxlength="20" required>
+                  </div>
+                  <div class="field">
+                    <label for="cfgHours">Horario de atención</label>
+                    <input class="input" type="text" id="cfgHours" maxlength="60" required>
+                  </div>
+                  <div class="field">
+                    <label for="cfgAddress">Zona de entrega</label>
+                    <input class="input" type="text" id="cfgAddress" maxlength="60" required>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <header class="card__head"><div><h2>Pagos y delivery</h2><p>Números de billeteras y costo de envío.</p></div></header>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="cfgYape">Número de Yape</label>
+                    <input class="input" type="text" id="cfgYape" maxlength="20" required>
+                  </div>
+                  <div class="field">
+                    <label for="cfgPlin">Número de Plin</label>
+                    <input class="input" type="text" id="cfgPlin" maxlength="20" required>
+                  </div>
+                  <div class="field field--full">
+                    <label for="cfgBank">Datos de transferencia</label>
+                    <input class="input" type="text" id="cfgBank" maxlength="90" required>
+                  </div>
+                  <div class="field">
+                    <label for="cfgDeliveryFee">Costo de delivery (S/)</label>
+                    <input class="input" type="number" id="cfgDeliveryFee" min="0" step="0.5" required>
+                  </div>
+                  <div class="field">
+                    <label for="cfgFreeFrom">Delivery gratis desde (S/)</label>
+                    <input class="input" type="number" id="cfgFreeFrom" min="0" step="1" required>
+                    <small class="hint">Usa 0 para no ofrecer envío gratis.</small>
+                  </div>
+                  <div class="field">
+                    <label for="cfgAdvance">Días mínimos de anticipación</label>
+                    <input class="input" type="number" id="cfgAdvance" min="0" max="30" step="1" required>
+                  </div>
+                </div>
+                <div class="card__foot">
+                  <button type="button" class="btn btn--primary" id="saveConfigBtn">Guardar configuración</button>
+                </div>
+              </section>
+
+              <section class="card">
+                <header class="card__head"><div><h2>Seguridad del panel</h2><p>PIN de acceso local.</p></div></header>
+                <form id="pinForm" class="form-grid" novalidate>
+                  <div class="field field--full">
+                    <label for="currentPin">PIN actual</label>
+                    <input class="input" type="password" id="currentPin" inputmode="numeric" maxlength="8" autocomplete="current-password" required>
+                  </div>
+                  <div class="field">
+                    <label for="newPin">Nuevo PIN</label>
+                    <input class="input" type="password" id="newPin" inputmode="numeric" maxlength="8" autocomplete="new-password" required>
+                    <small class="hint">Entre 4 y 8 dígitos.</small>
+                  </div>
+                  <div class="field">
+                    <label for="repeatPin">Repetir nuevo PIN</label>
+                    <input class="input" type="password" id="repeatPin" inputmode="numeric" maxlength="8" autocomplete="new-password" required>
+                  </div>
+                  <div class="field field--full">
+                    <p class="form-error" id="pinError" role="alert"></p>
+                    <button type="submit" class="btn btn--ghost">Cambiar PIN</button>
+                  </div>
+                </form>
+              </section>
+
+              <section class="card">
+                <header class="card__head"><div><h2>Datos y respaldo</h2><p>Exporta, importa o reinicia la información.</p></div></header>
+                <div class="data-actions">
+                  <button type="button" class="btn btn--ghost" id="exportBtn">Descargar respaldo JSON</button>
+                  <label class="btn btn--ghost file-btn">
+                    Importar respaldo
+                    <input type="file" id="importInput" accept="application/json,.json" hidden>
+                  </label>
+                  <button type="button" class="btn btn--ghost" id="resetProductsBtn">Restaurar productos de ejemplo</button>
+                  <button type="button" class="btn btn--danger" id="resetAllBtn">Borrar todos los datos</button>
+                </div>
+                <p class="hint hint--block">El respaldo incluye productos, pedidos, configuración y PIN. Guárdalo en un lugar seguro.</p>
+              </section>
+            </div>
+          </div>
+          <p class="foot-note">Nota de seguridad: este panel es estático y valida el PIN en el navegador. Para uso profesional con varios dispositivos, conecta autenticación y base de datos reales.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL PRODUCTO -->
+  <dialog class="dialog" id="productDialog" aria-labelledby="productDialogTitle">
+    <form id="productForm" class="dialog__panel" novalidate>
+      <header class="dialog__head">
+        <div><span class="eyebrow">Catálogo</span><h2 id="productDialogTitle">Nuevo producto</h2></div>
+        <button type="button" class="icon-btn" data-close-product aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+
+      <div class="dialog__body">
+        <input type="hidden" id="pId">
+        <div class="form-grid">
+          <div class="field field--full">
+            <label for="pName">Nombre del producto *</label>
+            <input class="input" type="text" id="pName" maxlength="50" placeholder="Ej. Torta de lúcuma" required>
+            <small class="form-error" data-error-for="pName"></small>
+          </div>
+          <div class="field">
+            <label for="pCategory">Categoría *</label>
+            <select class="input" id="pCategory" required>
+              <option value="tortas">Tortas</option>
+              <option value="postres">Postres</option>
+              <option value="queques">Queques</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pPrice">Precio (S/) *</label>
+            <input class="input" type="number" id="pPrice" min="0.5" step="0.5" placeholder="8.00" required>
+            <small class="form-error" data-error-for="pPrice"></small>
+          </div>
+          <div class="field field--full">
+            <label for="pDescription">Descripción</label>
+            <textarea class="input" id="pDescription" rows="2" maxlength="160" placeholder="Ingredientes o detalle breve del postre."></textarea>
+          </div>
+          <div class="field">
+            <label for="pBadge">Etiqueta (opcional)</label>
+            <input class="input" type="text" id="pBadge" maxlength="18" placeholder="Ej. Más vendido">
+          </div>
+          <div class="field field--check">
+            <span class="field-label">Disponibilidad</span>
+            <label class="switch-row">
+              <input type="checkbox" id="pAvailable" checked>
+              <span class="switch" aria-hidden="true"></span>
+              <span>Disponible para la venta</span>
+            </label>
+          </div>
+          <div class="field field--full">
+            <span class="field-label">Imagen del producto *</span>
+            <div class="image-editor">
+              <div class="image-preview" id="pPreview">
+                <span>Vista previa</span>
+              </div>
+              <div class="image-controls">
+                <label class="btn btn--ghost btn--sm file-btn">
+                  Subir imagen
+                  <input type="file" id="pImageFile" accept="image/*" hidden>
+                </label>
+                <button type="button" class="btn btn--ghost btn--sm" id="pRemoveImage">Quitar imagen</button>
+                <p class="hint">JPG o PNG. Se optimiza automáticamente.</p>
+                <input class="input" type="url" id="pImageUrl" placeholder="…o pega una URL de imagen">
+              </div>
+            </div>
+            <small class="form-error" data-error-for="pImage"></small>
+          </div>
+        </div>
+      </div>
+
+      <footer class="dialog__foot">
+        <button type="button" class="btn btn--ghost" data-close-product>Cancelar</button>
+        <button type="submit" class="btn btn--primary" id="saveProductBtn">Guardar producto</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- MODAL PEDIDO -->
+  <dialog class="dialog" id="orderDialog" aria-labelledby="orderDialogTitle">
+    <div class="dialog__panel">
+      <header class="dialog__head">
+        <div><span class="eyebrow">Pedido</span><h2 id="orderDialogTitle">Detalle del pedido</h2></div>
+        <button type="button" class="icon-btn" data-close-order aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+      <div class="dialog__body" id="orderDetail"></div>
+      <footer class="dialog__foot dialog__foot--split">
+        <button type="button" class="btn btn--danger-soft" id="deleteOrderBtn">Eliminar pedido</button>
+        <div class="dialog__foot-right">
+          <a class="btn btn--ghost" id="orderContact" href="#" target="_blank" rel="noopener">Escribir al cliente</a>
+          <button type="button" class="btn btn--primary" data-close-order>Cerrar</button>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- CONFIRMACIÓN -->
+  <dialog class="dialog dialog--confirm" id="confirmDialog" aria-labelledby="confirmTitle">
+    <div class="dialog__panel">
+      <div class="confirm">
+        <span class="confirm__icon" id="confirmIcon" aria-hidden="true">⚠️</span>
+        <h2 id="confirmTitle">¿Estás seguro?</h2>
+        <p id="confirmText">Esta acción no se puede deshacer.</p>
+        <div class="confirm__actions">
+          <button type="button" class="btn btn--ghost" id="confirmCancel">Cancelar</button>
+          <button type="button" class="btn btn--danger" id="confirmOk">Sí, continuar</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="../js/store.js" defer></script>
+  <script src="panel.js" defer></script>
+</body>
+</html>

@@ -32,16 +32,20 @@
 
       <span class="eyebrow">Administración</span>
       <h1>Panel de la tienda</h1>
-      <p class="login__lead">Gestiona productos, precios, pedidos y la configuración de tu tienda.</p>
+      <p class="login__lead">Gestiona productos, pedidos y la configuración de tu tienda con Firebase.</p>
 
       <form id="loginForm" novalidate>
-        <label class="field-label" for="pinInput">PIN de acceso</label>
-        <input class="input input--pin" type="password" id="pinInput" inputmode="numeric" autocomplete="current-password" maxlength="8" placeholder="••••" required>
+        <label class="field-label" for="emailInput">Correo electrónico</label>
+        <input class="input" type="email" id="emailInput" autocomplete="username" placeholder="tu@correo.com" required>
+
+        <label class="field-label" for="passwordInput">Contraseña</label>
+        <input class="input" type="password" id="passwordInput" autocomplete="current-password" placeholder="••••••••" required>
+
         <p class="form-error" id="loginError" role="alert"></p>
-        <button class="btn btn--primary btn--block" type="submit">Entrar al panel</button>
+        <button class="btn btn--primary btn--block" type="submit" id="loginBtn">Entrar al panel</button>
       </form>
 
-      <p class="login__hint">PIN inicial: <strong>1234</strong>. Cámbialo en Configuración.</p>
+      <p class="login__hint">Acceso exclusivo para el administrador. Los datos se sincronizan en Firebase.</p>
       <a class="login__back" href="../">← Volver a la tienda</a>
     </div>
   </main>
@@ -103,7 +107,7 @@
           <p id="viewSubtitle">Tu tienda de postres caseros de un vistazo.</p>
         </div>
         <div class="topbar__actions">
-          <span class="save-state" id="saveState">Guardado local</span>
+          <span class="save-state" id="saveState">Conectado a Firebase</span>
           <button type="button" class="btn btn--primary btn--sm" id="newProductTop">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
             Nuevo producto
@@ -121,7 +125,7 @@
             </article>
             <article class="stat">
               <span class="stat__icon stat__icon--gold" aria-hidden="true">🧾</span>
-              <div><small>Pedidos</small><strong id="statOrders">0</strong><span id="statPending">0 pendientes</span></div>
+              <div><small>Pedidos</small><strong id="statOrders">0</strong><span id="statPending">0 activos</span></div>
             </article>
             <article class="stat">
               <span class="stat__icon stat__icon--green" aria-hidden="true">💰</span>
@@ -136,11 +140,11 @@
           <div class="panel-grid">
             <section class="card">
               <header class="card__head">
-                <div><h2>Pedidos recientes</h2><p>Los últimos pedidos guardados en este navegador.</p></div>
+                <div><h2>Pedidos recientes</h2><p>Los últimos pedidos registrados en Firebase.</p></div>
                 <button type="button" class="link-btn" data-go="pedidos">Ver todos</button>
               </header>
               <div class="recent-list" id="recentOrders"></div>
-              <div class="empty-inline" id="recentEmpty">Aún no hay pedidos. Cuando un cliente confirme uno, aparecerá aquí.</div>
+              <div class="empty-inline" id="recentEmpty">Aún no hay pedidos. Cuando un cliente confirme uno, aparecerá aquí en tiempo real.</div>
             </section>
 
             <section class="card card--actions">
@@ -204,7 +208,7 @@
             </div>
           </div>
 
-          <p class="foot-note">Las imágenes y los productos se guardan en este navegador (localStorage). Para cambiar de dispositivo usa el respaldo JSON en Configuración.</p>
+          <p class="foot-note">Los productos se guardan en Firestore. Las imágenes nuevas se optimizan y se guardan en la base de datos.</p>
         </section>
 
         <!-- PEDIDOS -->
@@ -234,10 +238,10 @@
               </thead>
               <tbody id="ordersBody"></tbody>
             </table>
-            <div class="empty-inline" id="ordersEmpty" hidden>Aún no hay pedidos registrados en este navegador.</div>
+            <div class="empty-inline" id="ordersEmpty" hidden>Aún no hay pedidos registrados.</div>
           </div>
 
-          <p class="foot-note">Los pedidos se guardan en este navegador. Si la tienda se usa en otro dispositivo, activa un backend o sincroniza con el respaldo JSON.</p>
+          <p class="foot-note">Los pedidos se sincronizan en tiempo real desde Firebase; aparecerán aquí cuando un cliente confirme su compra.</p>
         </section>
 
         <!-- CONFIGURACIÓN -->
@@ -314,30 +318,20 @@
               </section>
 
               <section class="card">
-                <header class="card__head"><div><h2>Seguridad del panel</h2><p>PIN de acceso local.</p></div></header>
-                <form id="pinForm" class="form-grid" novalidate>
+                <header class="card__head"><div><h2>Cuenta de administración</h2><p>Acceso protegido con Firebase Authentication.</p></div></header>
+                <div class="form-grid">
                   <div class="field field--full">
-                    <label for="currentPin">PIN actual</label>
-                    <input class="input" type="password" id="currentPin" inputmode="numeric" maxlength="8" autocomplete="current-password" required>
-                  </div>
-                  <div class="field">
-                    <label for="newPin">Nuevo PIN</label>
-                    <input class="input" type="password" id="newPin" inputmode="numeric" maxlength="8" autocomplete="new-password" required>
-                    <small class="hint">Entre 4 y 8 dígitos.</small>
-                  </div>
-                  <div class="field">
-                    <label for="repeatPin">Repetir nuevo PIN</label>
-                    <input class="input" type="password" id="repeatPin" inputmode="numeric" maxlength="8" autocomplete="new-password" required>
+                    <label>Sesión activa</label>
+                    <p class="hint" id="adminEmailLabel" style="font-size:.88rem;color:var(--ink);font-weight:700">—</p>
                   </div>
                   <div class="field field--full">
-                    <p class="form-error" id="pinError" role="alert"></p>
-                    <button type="submit" class="btn btn--ghost">Cambiar PIN</button>
+                    <p class="hint hint--block">Para cambiar la contraseña o agregar otro administrador, hazlo desde la consola de Firebase (Authentication → Users). Solo los correos autorizados en la app pueden acceder al panel.</p>
                   </div>
-                </form>
+                </div>
               </section>
 
               <section class="card">
-                <header class="card__head"><div><h2>Datos y respaldo</h2><p>Exporta, importa o reinicia la información.</p></div></header>
+                <header class="card__head"><div><h2>Datos y respaldo</h2><p>Exporta, importa o reinicia la información en Firebase.</p></div></header>
                 <div class="data-actions">
                   <button type="button" class="btn btn--ghost" id="exportBtn">Descargar respaldo JSON</button>
                   <label class="btn btn--ghost file-btn">
@@ -345,13 +339,13 @@
                     <input type="file" id="importInput" accept="application/json,.json" hidden>
                   </label>
                   <button type="button" class="btn btn--ghost" id="resetProductsBtn">Restaurar productos de ejemplo</button>
-                  <button type="button" class="btn btn--danger" id="resetAllBtn">Borrar todos los datos</button>
+                  <button type="button" class="btn btn--danger" id="resetAllBtn">Restablecer todo</button>
                 </div>
-                <p class="hint hint--block">El respaldo incluye productos, pedidos, configuración y PIN. Guárdalo en un lugar seguro.</p>
+                <p class="hint hint--block">El respaldo incluye productos, pedidos y configuración. Las acciones de restaurar/importar modifican los datos en Firebase.</p>
               </section>
             </div>
           </div>
-          <p class="foot-note">Nota de seguridad: este panel es estático y valida el PIN en el navegador. Para uso profesional con varios dispositivos, conecta autenticación y base de datos reales.</p>
+          <p class="foot-note">Firebase sincroniza los datos entre dispositivos. Asegúrate de haber configurado las reglas de Firestore y el usuario administrador en Firebase Authentication.</p>
         </section>
       </main>
     </div>
@@ -469,7 +463,6 @@
 
   <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
 
-  <script src="../js/store.js" defer></script>
-  <script src="panel.js" defer></script>
+  <script type="module" src="panel.js"></script>
 </body>
 </html>
